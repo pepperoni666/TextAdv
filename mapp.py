@@ -1,5 +1,5 @@
 import os, items
-from dic import symb, comm
+from dic import symb, comm, pos
 from characters import Character
 
 class map(object):
@@ -31,7 +31,18 @@ class map(object):
 		print "==============%s==============\n" %C.upper()
 		file = "room" + C + ".txt"
 		with open(file, "r") as f:
-			print f.readline()
+			for i in range(pos[C]):
+				stmp = f.readline()
+				while "|" not in stmp:
+					stmp = f.readline()
+			while True:
+				stmp = f.readline()
+				if "|" in stmp:
+					print stmp.rpartition('|')[0]
+					break;
+				else:
+					print stmp
+		print "\n"
 		for i in range(len(comm)):
 			print "%d) %s" %(i+1, comm[str(i+1)])
 		return False
