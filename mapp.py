@@ -1,13 +1,13 @@
-import os, items
-from dic import symb, comm, pos
+import os, items, reader
+from dic import symb, comm
 from characters import Character
 
 class map(object):
 	def __init__(self):
 		os.system("clear")
-		print "Where am i? What are all this doors for?\nI should get out of here...\n"
-		print "%s) %s" %("1", comm["2"])
 		self.player = Character("player");
+		reader.readOnly("intro.txt")
+		print "%s) %s" %("1", comm["2"])
 	def all(self):
 		for i in self.player.loot:
 			if type(i) is items.Key:
@@ -30,19 +30,7 @@ class map(object):
 			return True
 		print "==============%s==============\n" %C.upper()
 		file = "room" + C + ".txt"
-		with open(file, "r") as f:
-			for i in range(pos[C]):
-				stmp = f.readline()
-				while "|" not in stmp:
-					stmp = f.readline()
-			while True:
-				stmp = f.readline()
-				if "|" in stmp:
-					print stmp.rpartition('|')[0]
-					break;
-				else:
-					print stmp
-		print "\n"
+		reader.readRoom(file, C)
 		for i in range(len(comm)):
 			print "%d) %s" %(i+1, comm[str(i+1)])
 		return False
