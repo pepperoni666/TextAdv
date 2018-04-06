@@ -6,7 +6,7 @@ def readOnly(FileName):
 			stmp = f.readline()
 			if "|" in stmp:
 				print stmp.rpartition('|')[0]
-				break;
+				break
 			else:
 				print stmp
 	print "\n"
@@ -21,7 +21,15 @@ def readRoom(FileName, C):
 			stmp = f.readline()
 			if "|" in stmp:
 				print stmp.rpartition('|')[0]
-				break;
+				readCondit(stmp.rpartition('|')[1])
+				break
 			else:
 				print stmp
 	print "\n"
+
+def readCondit(str):
+	args = str.split(' ')
+	if(args[0] == "end"):
+		pass
+	else:
+		pass
