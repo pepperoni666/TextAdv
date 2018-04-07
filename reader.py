@@ -1,4 +1,5 @@
 from dic import pos
+import conditions
 
 def readOnly(FileName):
 	with open(FileName, "r") as f:
@@ -21,7 +22,7 @@ def readRoom(FileName, C):
 			stmp = f.readline()
 			if "|" in stmp:
 				print stmp.rpartition('|')[0]
-				readCondit(stmp.rpartition('|')[1])
+				x = readCondit(stmp.rpartition('|')[1])
 				break
 			else:
 				print stmp
@@ -32,4 +33,4 @@ def readCondit(str):
 	if(args[0] == "end"):
 		pass
 	else:
-		pass
+		return conditions.intoCondrit()
