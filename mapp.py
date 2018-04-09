@@ -6,8 +6,9 @@ class map(object):
 	def __init__(self):
 		os.system("clear")
 		self.player = Character("player")
-		x = reader.readRoom("intro.txt")
-		print "%s) %s" %("1", comm["2"])
+		x = reader.readRoom("txtStory/intro.txt")
+		for i in range(len(x.comnds)):
+			print "%d) %s" %(i+1, x.comnds[i])
 	def input(self, _input):
 		if _input in comm:
 			if _input == "1":
@@ -52,7 +53,7 @@ class map(object):
 			print "bye"
 			return True
 		print "==============%s==============\n" %C.upper()
-		file = "room" + C + ".txt"
+		file = "txtStory/room" + C + ".txt"
 		x = reader.readRoom(file, C)
 		for i in range(len(comm)):
 			print "%d) %s" %(i+1, comm[str(i+1)])
