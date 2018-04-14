@@ -1,2 +1,6 @@
-Welcome in room D!
+Hmmm...
+I dont know... |ok
+Its only key for room E here...
+|take key E
+Hope it will help.
 |end

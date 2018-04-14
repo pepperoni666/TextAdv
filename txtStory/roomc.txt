@@ -1,2 +1,15 @@
-Welcome in room C!
+I was waiting for you... |ok
+All i know is that key for room B,
+is in room D, i will give you a key.
+|take key D
+Please bring my key back, after you finish.
+|give key E
+Second one?
+|give key D
+There was no B key, right? |ok
+Only E key... I realy needed this one
+But dont be upset! 
+I have B key! Here it is...
+|take key B
+Thenk you for your help! Bey!
 |end

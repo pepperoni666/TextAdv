@@ -1,4 +1,2 @@
 Welcome in room B!
-|give key exit
-ok now
 |end

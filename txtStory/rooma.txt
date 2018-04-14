@@ -1,6 +1,17 @@
-Welcome in room A!
-this is the story... |ok
-...you are a dick, and take this key!
+Hi there!
+I know you are looking for an exit, 
+but the door is locked, and im the only one
+with a key... |ok
+To get this key, you will need to do 
+just one simple thing for me. |ok
+Bring me a key for room B.
+And room C will help you with it...
+|take key C
+I am waiting for B room key. Go get it
+|give key B
+Thenk you! As i promised - here is 
+your key, it will open exit 
+for you.
 |take Key exit
 Good luck
 |end
