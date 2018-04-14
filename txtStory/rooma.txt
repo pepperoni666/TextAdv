@@ -1,4 +1,6 @@
 Welcome in room A!
 this is the story... |ok
-...you are a dick
+...you are a dick, and take this key!
+|take Key exit
+Good luck
 |end

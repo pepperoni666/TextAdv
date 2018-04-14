@@ -17,11 +17,14 @@ class map(object):
 		print "\n"
 	def input(self, _input):
 		if self.inRoom:
+			if _input == "l":
+				self.loot()
+				return False
 			resp = self.condit.conditInput(self.player, self.condit.comnds[int(_input)-1])
 			if resp == 1:
 				self.all()
 			elif resp == 0:
-				pass
+				print "discard"
 			elif resp == 2:
 				if self.room(self.R):
 					return True
@@ -38,6 +41,8 @@ class map(object):
 	def all(self):
 		self.R = ""
 		self.inRoom = False
+		for i in symb.keys():
+			symb[i] = "#"
 		for i in self.player.loot:
 			if type(i) is items.Key:
 				for key, val in symb.items():

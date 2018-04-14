@@ -25,5 +25,9 @@ def readCondit(str, C):
 		return conditions.introCondit(C)
 	elif args[0].lower() == "end":
 		return conditions.endCondit(C)
+	elif args[0].lower() == "take":
+		return conditions.takeCondit(C, args[1].lower(), args[2].lower())
+	elif args[0].lower() == "give":
+		return conditions.giveCondit(C, args[1].lower(), args[2].lower())
 	else:
-		return conditions.okCondit(C)
+		return conditions.endCondit(C)

@@ -1,4 +1,4 @@
-import abc
+import abc, items
 from dic import pos
 
 class Condition(object):
@@ -23,15 +23,60 @@ class okCondit(Condition):
 	def __init__(self, C):
 		super(okCondit, self).__init__(C)
 		self.comnds.append("ok")
+		self.comnds.append("back")
 	def conditInput(self, player, input):
 		if input == "ok":
 			pos[self.room] = pos[self.room] + 1
 			return 2
+		if input == "back":
+			return 1
 
 class endCondit(Condition):
 	def __init__(self, C):
 		super(endCondit, self).__init__(C)
 		self.comnds.append("back")
 	def conditInput(self, player, input):
+		if input == "back":
+			return 1
+
+class takeCondit(Condition):
+	def __init__(self, C, _item, _args):
+		super(takeCondit, self).__init__(C)
+		self.item = _item
+		self.args = _args.split(',')
+		self.comnds.append("take")
+		self.comnds.append("deny")
+		self.comnds.append("back")
+	def conditInput(self, player, input):
+		if input == "take":
+			if self.item == "key":
+				player.loot.append(items.Key(self.args[0]))
+			pos[self.room] = pos[self.room] + 1
+			return 2
+		if input == "deny":
+			return 1
+		if input == "back":
+			return 1
+
+class giveCondit(Condition):
+	def __init__(self, C, _item, _args):
+		super(giveCondit, self).__init__(C)
+		self.item = _item
+		self.args = _args.split(',')
+		self.comnds.append("give")
+		self.comnds.append("deny")
+		self.comnds.append("back")
+	def conditInput(self, player, input):
+		if input == "give":
+			for x in player.loot:
+				if self.item == x.name.lower():
+					if self.item == "key":
+						if self.args[0] == x.lock:
+							player.loot.remove(x)
+							pos[self.room] = pos[self.room] + 1
+							return 2
+			return 0
+		if input == "deny":
+			return 1
 		if input == "back":
 			return 1
