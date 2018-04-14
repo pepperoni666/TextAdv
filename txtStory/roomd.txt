@@ -1,2 +1,2 @@
 Welcome in room D!
-|
+|end

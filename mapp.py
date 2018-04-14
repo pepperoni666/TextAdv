@@ -5,34 +5,39 @@ from characters import Character
 class map(object):
 	def __init__(self):
 		os.system("clear")
+		self.inRoom = True
 		self.player = Character("player")
-		x = reader.readRoom("txtStory/intro.txt")
-		for i in range(len(x.comnds)):
-			print "%d) %s" %(i+1, x.comnds[i])
+		self.R = -1
+		self.condit = reader.readRoom("txtStory/intro.txt", self.R)
+		self.printCondit()
+	def printCondit(self):
+		print "\n"
+		for i in range(len(self.condit.comnds)):
+			print "%d) %s" %(i+1, self.condit.comnds[i])
+		print "\n"
 	def input(self, _input):
-		if _input in comm:
-			if _input == "1":
+		if self.inRoom:
+			resp = self.condit.conditInput(self.player, self.condit.comnds[int(_input)-1])
+			if resp == 1:
 				self.all()
-			elif _input == "2":
-				return False
-			elif _input == "3":
-				return False
-			elif _input == "4":
-				self.loot()
-			elif _input == "5":
-				return False
+			elif resp == 0:
+				pass
+			elif resp == 2:
+				if self.room(self.R):
+					return True
 			else:
-				return False
-		elif _input in symb:
+				pass
+
+		else:
 			if not symb[_input] == "#":
 				if self.room(_input):
 					return True
 			else:
 				print "door is closed"
 			return False
-		else:
-			return False
 	def all(self):
+		self.R = ""
+		self.inRoom = False
 		for i in self.player.loot:
 			if type(i) is items.Key:
 				for key, val in symb.items():
@@ -48,15 +53,16 @@ class map(object):
 		print "\t\t E%s\n" %symb["e"]
 
 	def room(self, C):
+		self.R = C
+		self.inRoom = True
 		os.system("clear")
 		if C == "exit":
 			print "bye"
 			return True
 		print "==============%s==============\n" %C.upper()
 		file = "txtStory/room" + C + ".txt"
-		x = reader.readRoom(file, C)
-		for i in range(len(comm)):
-			print "%d) %s" %(i+1, comm[str(i+1)])
+		self.condit = reader.readRoom(file, C)
+		self.printCondit()
 		return False
 
 	def loot(self):
