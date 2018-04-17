@@ -1,8 +1,2 @@
 Welcome in room B!
 |end
-
-Bring me a key for room B.
-And room C will help you with it...
-|take key C
-I am waiting for B room key. Go get it
-|give key B
