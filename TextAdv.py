@@ -1,5 +1,4 @@
 from mapp import map
-from dic import symb, comm
 """from sys import platform
 
 if platform == "linux" or platform == "linux2":

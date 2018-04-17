@@ -1,5 +1,5 @@
 import os, items, reader
-from dic import symb, comm
+from dic import symb
 from characters import Character
 
 class map(object):
@@ -14,6 +14,7 @@ class map(object):
 		print "\n"
 		for i in range(len(self.condit.comnds)):
 			print "%d) %s" %(i+1, self.condit.comnds[i])
+		print "l) your loot\n"
 		print "\n"
 	def input(self, _input):
 		if self.inRoom:
@@ -75,5 +76,5 @@ class map(object):
 			print "Empty"
 		else:
 			for i in self.player.loot:
-				print i.name
+				print "{}: {}".format(i.name, i.description)
 		return False

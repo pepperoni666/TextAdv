@@ -1,0 +1,10 @@
+To get this key, you will need to do 
+just one simple thing for me. |ok
+some shit
+|choose Right Wrong
+this is Wrong
+|ok
+|chooseEnd
+Thenk you! As i promised...
+|ok
+|end

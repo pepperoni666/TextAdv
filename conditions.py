@@ -1,5 +1,5 @@
 import abc, items
-from dic import pos
+from dic import pos, choices
 
 class Condition(object):
 	@abc.abstractmethod
@@ -26,7 +26,7 @@ class okCondit(Condition):
 		self.comnds.append("back")
 	def conditInput(self, player, input):
 		if input == "ok":
-			pos[self.room] = pos[self.room] + 1
+			pos[self.room] += 1
 			return 2
 		if input == "back":
 			return 1
@@ -51,7 +51,7 @@ class takeCondit(Condition):
 		if input == "take":
 			if self.item == "key":
 				player.loot.append(items.Key(self.args[0]))
-			pos[self.room] = pos[self.room] + 1
+			pos[self.room] += 1
 			return 2
 		if input == "deny":
 			return 1
@@ -73,10 +73,32 @@ class giveCondit(Condition):
 					if self.item == "key":
 						if self.args[0] == x.lock:
 							player.loot.remove(x)
-							pos[self.room] = pos[self.room] + 1
+							pos[self.room] += 1
 							return 2
 			return 0
 		if input == "deny":
 			return 1
+		if input == "back":
+			return 1
+
+class chooseCondit(Condition):
+	def __init__(self, C, good, bad):
+		super(chooseCondit, self).__init__(C)
+		self.good = good
+		self.bad = bad
+		self.comnds.append(good)
+		self.comnds.append(bad)
+		self.comnds.append("back")
+	def conditInput(self, player, input):
+		if input == self.good:
+			if self.room[0] in choices:
+				choices[self.room[0]] += 1 
+			else:
+				choices[self.room[0]] = 1
+			pos[self.room[0]*(choices[self.room[0]]+1)] = 0
+			return 2
+		if input == self.bad:
+			pos[self.room] += 1
+			return 2
 		if input == "back":
 			return 1

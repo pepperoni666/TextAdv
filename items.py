@@ -11,7 +11,7 @@ class Item(object):
 class Key(Item):
 	def __init__(self, lock):
 		self.lock = lock
-		super(Key, self).__init__("Key", "Old-style, long, metal key, with a note on it. The note says: \"{}\"".format(self.lock), self.lock)
+		super(Key, self).__init__("Key", "Old-style, long, metal key, with a note on it. The note says: \"{}\"".format(self.lock.upper()), self.lock)
 
 
 class Tool(Item):
