@@ -48,10 +48,8 @@ def readCondit(str, C):
 		if C[0] in choices:
 			if choices[C[0]]==1:
 				del choices[C[0]]
-				del pos[C]
 				skip("txtStory/room" + C[0] + ".txt", C[0])
 				return readRoom("txtStory/room" + C[0] + ".txt", C[0])
-			del pos[C]
 			choices[C[0]] -= 1
 			skip("txtStory/choose" + C[:len(C)-2] + ".txt", C[:len(C)-1])
 			return readRoom("txtStory/choose" + C[:len(C)-2] + ".txt", C[:len(C)-1])

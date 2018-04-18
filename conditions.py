@@ -95,7 +95,10 @@ class chooseCondit(Condition):
 				choices[self.room[0]] += 1 
 			else:
 				choices[self.room[0]] = 1
-			pos[self.room[0]*(choices[self.room[0]]+1)] = 0
+			if self.room[0]*(choices[self.room[0]]+1) in pos.keys():
+				pos[self.room[0]*(choices[self.room[0]]+1)] += 1
+			else:
+				pos[self.room[0]*(choices[self.room[0]]+1)] = 0
 			return 2
 		if input == self.bad:
 			pos[self.room] += 1

@@ -2,6 +2,12 @@ Hi there!
 I know you are looking for an exit, 
 but the door is locked, and im the only one
 with a key... |ok
+But before we start... 
+let me try sthng:
+|choose ok no
+ok then
+|ok
+|chooseend
 Can you help me? |choose Yes No
 So sad... |ok
 Ok, never mind |ok
