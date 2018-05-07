@@ -21,23 +21,28 @@ class map(object):
 			if _input == "l":
 				self.loot()
 				return False
-			resp = self.condit.conditInput(self.player, self.condit.comnds[int(_input)-1])
-			if resp == 1:
-				self.all()
-			elif resp == 0:
-				print "discard"
-			elif resp == 2:
-				if self.room(self.R):
-					return True
-			else:
-				pass
+			try:
+				int(_input)
+			except ValueError:
+				return False
+			if int(_input)-1 <= len(self.condit.comnds) and int(_input)-1 >= 0:
+				resp = self.condit.conditInput(self.player, self.condit.comnds[int(_input)-1])
+				if resp == 1:
+					self.all()
+				elif resp == 0:
+					print "discard"
+				elif resp == 2:
+					if self.room(self.R):
+						return True
+			return False
 
 		else:
-			if not symb[_input] == "#":
-				if self.room(_input):
-					return True
-			else:
-				print "door is closed"
+			if _input in symb:
+				if not symb[_input] == "#":
+					if self.room(_input):
+						return True
+				else:
+					print "door is closed"
 			return False
 	def all(self):
 		self.R = ""

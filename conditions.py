@@ -44,17 +44,14 @@ class takeCondit(Condition):
 		super(takeCondit, self).__init__(C)
 		self.item = _item
 		self.args = _args.split(',')
-		self.comnds.append("take")
-		self.comnds.append("deny")
+		self.comnds.append("ok   +1 item")
 		self.comnds.append("back")
 	def conditInput(self, player, input):
-		if input == "take":
+		if input == "ok   +1 item":
 			if self.item == "key":
 				player.loot.append(items.Key(self.args[0]))
 			pos[self.room] += 1
 			return 2
-		if input == "deny":
-			return 1
 		if input == "back":
 			return 1
 
@@ -63,11 +60,10 @@ class giveCondit(Condition):
 		super(giveCondit, self).__init__(C)
 		self.item = _item
 		self.args = _args.split(',')
-		self.comnds.append("give")
-		self.comnds.append("deny")
+		self.comnds.append("ok   -1 item")
 		self.comnds.append("back")
 	def conditInput(self, player, input):
-		if input == "give":
+		if input == "ok   -1 item":
 			for x in player.loot:
 				if self.item == x.name.lower():
 					if self.item == "key":
@@ -76,8 +72,6 @@ class giveCondit(Condition):
 							pos[self.room] += 1
 							return 2
 			return 0
-		if input == "deny":
-			return 1
 		if input == "back":
 			return 1
 
